@@ -32,7 +32,7 @@ class CupoController extends Controller
 //            'email' => 'required|unique:cupos,email,'.$cupo->id,
         ]);
         $query=Cupo::where('ci', $request->ci)->get();
-        if (sizeof($query) > 0) {
+        if (sizeof($query) > 1) {
             return response()->json(['message' => 'El CI ya se encuentra registrado'], 500);
         }else{
             $cupo->update($request->all());

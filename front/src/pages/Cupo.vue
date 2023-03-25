@@ -23,7 +23,7 @@
         <template v-if="store.user.role=='ADMINISTRADOR'">
           <q-btn flat round dense icon="qr_code" @click="qrPrint(props.row)" />
           <q-btn flat round dense icon="public" @click="cupoRegister(props.row)" />
-          <q-btn flat round dense icon="recycling" @click="cupoReset(props.row)" />
+          <!--<q-btn flat round dense icon="recycling" @click="cupoReset(props.row)" />-->
           <q-btn flat round dense icon="published_with_changes" @click="cupoChange(props.row)" />
         </template>
       </q-td>
@@ -55,6 +55,28 @@
       </q-card-section>
     </q-card>
   </q-dialog>
+  <q-dialog v-model="dialogReg" full-width>
+    <q-card >
+      <q-card-section>
+        <div class="text-h6">REGISTRO DE ESTUDIANTE</div>
+      </q-card-section>
+
+      <q-card-section class="q-pt-none">
+        <q-form
+          @submit="regStudent"
+          class="q-gutter-md"
+        >
+        <q-input dense outlined v-model="cupo.ci" label="Cedula de Identidad" autofocus @update:model-value="validar(cupo.ci)" required/>
+        <q-input dense outlined v-model="cupo.nombres" label="Nombre Completo" required/>
+        <div v-if="reg">{{mensaje}}</div>
+        <div>
+            <q-btn label="Registrar" type="submit" color="green" :disable="reg"/>
+            <q-btn label="Cancelar"  color="red"  class="q-ml-sm" v-close-popup />
+          </div>
+        </q-form>
+      </q-card-section>
+    </q-card>
+  </q-dialog>
 <!--  <pre>{{store.cupos}}</pre>-->
 </q-page>
 </template>
@@ -75,8 +97,11 @@ export default {
       store:useCounterStore(),
       cupos: [],
       cupo:{},
+      reg:false,
+      dialogReg:false,
       cupoUpdateShow: false,
       valida:true,
+      val:false,
       cupoColumns:[
         {name:'action', label:'Acción', field:'action', align:'left', sortable:true},
         {name:'ci', label:'C.I.', field:'ci', align:'left', sortable:true},
@@ -85,9 +110,9 @@ export default {
         {name:'id', label:'ID', field:'id', align:'left', sortable:true},
         {name:'nombre', label:'Nombre', field:'nombre', align:'left', sortable:true},
         // {name:'carrera', label:'Carrera', field:'carrera', align:'left', sortable:true},
-        {name:'celular', label:'Celular', field:'celular', align:'left', sortable:true},
-        {name:'correo', label:'Correo', field:'correo', align:'left', sortable:true},
-        {name:'foto', label:'Foto', field:'foto', align:'left', sortable:true},
+       // {name:'celular', label:'Celular', field:'celular', align:'left', sortable:true},
+        //{name:'correo', label:'Correo', field:'correo', align:'left', sortable:true},
+      //  {name:'foto', label:'Foto', field:'foto', align:'left', sortable:true},
       ]
     }
   },
@@ -99,7 +124,20 @@ export default {
   computed: {
   },
   methods: {
-    cupoUpdate(){
+    cupoRegister(cc){
+      this.cupo=cc
+      this.dialogReg=true
+    },
+    validar(ci){
+      this.$api.post('validaCupon/'+ci).then(response => {
+        console.log(response.data)
+        this.reg=false
+        this.mensaje=''
+          if(response.data && response.data.id!=this.cupo.id){
+            this.reg=true
+            this.mensaje='El ci esta registrado'
+          }
+      })
 
     },
     qrPrint(row){
@@ -125,8 +163,34 @@ export default {
           console.error(err)
         })
     },
-    cupoRegister(cupo){
-      window.open(process.env.API_FRONT+'registro/'+cupo.codigo,'_blank')
+    regStudent(){
+      //window.open(process.env.API_FRONT+'registro/'+cupo.codigo,'_blank')
+        if(this.reg){
+          return false
+        }
+        this.$q.loading.show()
+        //this.cupo.foto=this.foto
+        this.cupo.nombres= this.cupo.nombres.toUpperCase()
+        this.$api.put(`updateRegistro/${this.cupo.id}`, this.cupo).then((response) => {
+          this.dialogReg=false
+          this.$q.notify({
+            message: 'Cupo registrado',
+            color: 'positive',
+            icon: 'check_circle',
+            position: 'top'
+          })
+          this.cupoBool = true
+        }).catch(res=>{
+          this.$q.notify({
+            message: res.response.data.message,
+            color: 'negative',
+            icon: 'warning',
+            position: 'top'
+          })
+        }).finally(() => {
+          this.$q.loading.hide()
+        })
+  
     },
     rotateFoto(row){
       this.$q.dialog({
