@@ -97,7 +97,7 @@ class CupoController extends Controller
                     $titulo='CERTIFICADO DE PARTICIPACION';
                     break;
             }
-            $png = QrCode::format('png')->size(250)->generate('BATTLE BOT MARZO 2023 "'.$value['nombres']);
+            $png = QrCode::format('png')->size(250)->generate('BATTLE BOT MARZO 2023 - '.$value['nombres']);
             $png = base64_encode($png);
             $value['url']='https://certificados.sistemas.edu.bo/jtc2022'.$tip.'/'.$value['ci'];
             $value['titulo']=$titulo;

@@ -6,7 +6,7 @@
       :selected-rows-label="getSelectedString" v-model:selected="selected" selection="multiple" dense :rows-per-page-options="[15,100,150,500]" :rows="cupos" :columns="cupoColumns" :filter="cupoSearch">
       <template v-slot:top-right>
         <q-toggle v-model="fondo" true-value="SI" false-value="NO" :label="`${fondo} Fondo`"/>
-        
+
         <q-btn flat round dense icon="o_print" @click="cupoPrint" />
         <q-btn flat round dense icon="refresh" @click="cupoGet();cupoSearch=''" />
         <q-input dense outlined placeholder="Buscar..." v-model="cupoSearch">
@@ -47,7 +47,7 @@ export default {
   data() {
     return {
       selected: [],
-      fondo:'NO',
+      fondo:'SI',
       url: process.env.API,
       cupoSearch: '',
       store:useCounterStore(),

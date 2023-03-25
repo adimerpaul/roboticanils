@@ -39,13 +39,16 @@ $cont=0;
     <div style="border: 0px solid red;position: absolute;top: 550px;left: 120px;text-align: center;font-size: 0.6em;width: 850px;height: 85px;font-family: 'Nunito', sans-serif;color: #343c47">
         <table style="width: 100%">
             <tr>
-                <td style="text-align: center">Ing. Alejandro Fernando Lopez Gutierrez<br>ING. DE SISTEMAS E ING. INFORMATICA</td>
-{{--                <td style="text-align: center">MSc. Ing. Franz Chinche Imaña<br>DIRECTOR DE CARRERA<br>ING. DE SISTEMAS E ING. INFORMATICA</td>--}}
-                <td style="text-align: center">MCs. Ing. Julio Cesar Bermúdez Vargas<br>VICEDECANO<br>FACULTAD NACIONAL DE INGENIERIA</td>
+                <td style="text-align: center">Ing. Adimer Paul Chambi Ajata<br>INGENIERIO INFORMATICO</td>
+                <td style="text-align: center">Ing. Marcelo Callapa Nicolas<br>GERENTE GENERAL<br>WALTYS YOGUR GRIEGO</td>
+                <td style="text-align: center">Ing. Alejandro Fernando Lopez Gutierrez<br>INGENIERIO INFORMATICO</td>
             </tr>
         </table>
     </div>
-    <img src="data:image/png;base64, {!! $certificado['qr'] !!}" style="border:2px solid white;position: absolute;top: 600px;right: 450px;width: 90px;height: 90px">
+    <div style="position: absolute; top: 500px;right: 700px;"><img src="firma3.png" width="200px" height="100px"></div>
+    <div style="position: absolute; top: 480px;right: 450px;"><img src="firma2.png" width="200px" height="100px"></div>
+    <div style="position: absolute; top: 480px;right: 150px;"><img src="firma1.png" width="180px" height="90px"></div>
+    <img src="data:image/png;base64, {!! $certificado['qr'] !!}" style="border:2px solid white;position: absolute;top: 620px;right: 450px;width: 90px;height: 90px">
 {{--    <div style="border: 0px solid red;position: absolute;top: 700px;left: 120px;text-align: center;font-size: 0.5em; font-weight: bold;width: 850px;height: 35px;font-family: 'Nunito', sans-serif;color: #343c47">{{$certificado['url']}}</div>--}}
 
     <?php $cont++;?>
