@@ -110,14 +110,14 @@
                   Principal
               </q-item-section>
             </q-item>
-            <q-item clickable exact to="estudiantes" v-if="store.user.role=='ADMINISTRADOR'" active-class="bg-blue-grey-6 text-white">
+            <!--<q-item clickable exact to="estudiantes" v-if="store.user.role=='ADMINISTRADOR'" active-class="bg-blue-grey-6 text-white">
               <q-item-section avatar>
                 <q-icon name="o_people" />
               </q-item-section>
               <q-item-section>
-                Estudiantes 
+                Estudiantes
               </q-item-section>
-            </q-item>
+            </q-item>-->
             <q-item clickable exact to="user" v-if="store.user.role=='ADMINISTRADOR'"  active-class="bg-blue-grey-6 text-white">
               <q-item-section avatar>
                 <q-icon name="o_account_circle" />
