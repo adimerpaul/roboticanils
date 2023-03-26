@@ -28,7 +28,7 @@ $cont=0;
 {{--    <div style="border: 0px solid red;position: absolute;top: 255px;left: 110px;text-align: center;font-size: 2.8em; font-weight: bold;width: 870px;height: 35px;font-family: 'Nunito', sans-serif;color: #343c47">{{$certificado['titulo']}}</div>--}}
     <div style="border: 0px solid red;position: absolute;top: 325px;left: 90px;text-align: center;font-size: 1.8em; font-weight: bold;width: 900px;height: 35px;font-family: 'Nunito', sans-serif;color: #343c47">A: {{$certificado['nombres']}}</div>
     <div style="border: 0px solid red;position: absolute;top: 380px;left: 120px;text-align: justify;font-size: 1em;width: 850px;height: 85px;font-family: 'Nunito', sans-serif;color: #343c47">
-        Por su participación en calidad de <span style="font-size: 1.5em;font-weight: bold;">{{$certificado['tipo']}}</span> en la competencia <span style="font-size: 1.5em;font-weight: bold;"> BATTLEBOT SUMO</span>
+        Por su participación en calidad de <span style="font-size: 1.5em;font-weight: bold;">{{$certificado['tipo']}}</span> en la competencia <span style="font-size: 1.5em;font-weight: bold;"> BATTLE BOT SUMO</span>
         demostrandoo habilidades en programación, mecánica y construcción de robots. Se le otorga el presente certificado. <br>
 
         Desarrollado el 26 de Marzo del 2023 en la ciudad de Oruro, Bolivia.
